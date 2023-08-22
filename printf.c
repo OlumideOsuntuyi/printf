@@ -3,11 +3,17 @@
 #include <stdlib.h>
 #include "main.h"
 
+/**
+ * _printf - Custom printf implementation
+ * @format: Format string
+ *
+ * Return: Number of characters printed
+ */
 int _printf(const char *format, ...)
 {
     va_list args;
     int printed_chars = 0;
-    char buffer[1024];  /* Buffer to store printed characters */
+    char buffer[1024]; /* Buffer to store printed characters */
     int i = 0;
 
     va_start(args, format);
@@ -59,19 +65,19 @@ int _printf(const char *format, ...)
                     i++;
                     break;
                 case 'r':
-                    {
-                        const char *str = va_arg(args, const char *);
-                        printed_chars += print_reversed_string(str, buffer, &printed_chars);
-                        i++;
-                        break;
-                    }
+                {
+                    const char *str = va_arg(args, const char *);
+                    printed_chars += print_reversed_string(str, buffer, &printed_chars);
+                    i++;
+                    break;
+                }
                 case 'R':
-                    {
-                        const char *str = va_arg(args, const char *);
-                        printed_chars += print_rot13_string(str, buffer, &printed_chars);
-                        i++;
-                        break;
-                    }
+                {
+                    const char *str = va_arg(args, const char *);
+                    printed_chars += print_rot13_string(str, buffer, &printed_chars);
+                    i++;
+                    break;
+                }
                 case 'S':
                     printed_chars += print_string_non_printable(args, buffer, &printed_chars);
                     i++;
