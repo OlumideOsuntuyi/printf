@@ -2,36 +2,36 @@
 #define MAIN_H
 
 #include <stdarg.h>
-#include <stdlib.h>
-#include <unistd.h>
-#include <limits.h>
-#include <stdio.h>
 
-/* Custom data structure to associate format specifiers with their handler functions */
-typedef struct st_fmt
+/**
+ * struct format_specifier - Struct for format specifiers and corresponding functions
+ * @specifier: The format specifier
+ * @func: The corresponding function to handle the specifier
+ */
+typedef struct format_specifier
 {
-    char *fmt;
-    int (*func)(va_list list);
-} st_fmt;
+    char specifier;
+    int (*func)(va_list args, char *buffer, int *printed_chars, char flags);
+} format_specifier_t;
 
-/* Custom printf function */
 int _printf(const char *format, ...);
-
-/* Helper function to print a character */
 int _putchar(char c);
-
-/* Format specifier handler functions */
-int print_char(va_list list, char buffer[], int *printed_chars);
-int print_string(va_list list, char buffer[], int *printed_chars);
-int print_padded_string(const char *str, int width, char buffer[], int *printed_chars, char padding_char);
-int print_percent(char buffer[], int *printed_chars);
-int print_integer_with_flags(va_list list, char buffer[], int *printed_chars, char flags);
-int print_long_integer(va_list list, char buffer[], int *printed_chars, char specifier);
-int print_short_integer(va_list list, char buffer[], int *printed_chars, char specifier);
-int print_unsig_integer(va_list list, char buffer[], int *printed_chars, char specifier);
-int print_binary_oct_hex(va_list list, char buffer[], int *printed_chars, char specifier, int upper);
-int print_reversed_string(const char *str, char buffer[], int *printed_chars);
-int print_rot13_string(const char *str, char buffer[], int *printed_chars);
+int print_char(va_list args, char *buffer, int *printed_chars, char flags);
+int print_string(va_list args, char *buffer, int *printed_chars, char flags);
+int print_percent(va_list args, char *buffer, int *printed_chars, char flags);
+int print_integer_with_flags(va_list args, char *buffer, int *printed_chars, char flags);
+int print_long_integer(va_list args, char *buffer, int *printed_chars, char specifier);
+int print_short_integer(va_list args, char *buffer, int *printed_chars, char specifier);
+int print_binary(va_list args, char *buffer, int *printed_chars, char flags);
+int print_integer(va_list args, char *buffer, int *printed_chars, char flags);
+int print_unsigned(va_list args, char *buffer, int *printed_chars, char flags);
+int print_octal(va_list args, char *buffer, int *printed_chars, char flags);
+int print_hex(va_list args, char *buffer, int *printed_chars, char flags);
+int print_upper_hex(va_list args, char *buffer, int *printed_chars, char flags);
+int print_pointer(va_list args, char *buffer, int *printed_chars, char flags);
+int print_reversed_string(const char *str, char *buffer, int *printed_chars, char flags);
+int print_rot13_string(const char *str, char *buffer, int *printed_chars, char flags);
+int print_string_non_printable(va_list args, char *buffer, int *printed_chars, char flags);
 
 #endif /* MAIN_H */
 

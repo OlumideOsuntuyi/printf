@@ -1,78 +1,59 @@
 #include "main.h"
 
-/**
- * _printf - Custom printf function
- * @format: Format string
- * @...: Variable number of arguments
- *
- * Return: Number of characters printed
- */
 int _printf(const char *format, ...)
 {
     va_list args;
-    int len = 0, printed_chars = 0, total_printed = 0;
-    char buffer[1024];      /* Local buffer for printing */
-
-    if (!format)
-        return -1;
+    int printed_chars = 0;
+    int i, j;
+    char buffer[1024] = {0};  // Buffer to store printed characters
+    char flags = 0;  // Placeholder for flags (modify as needed)
+    
+    format_specifier_t specifiers[] = {
+        {'c', print_char},
+        {'s', print_string},
+        {'%', print_percent},
+        {'d', print_integer_with_flags},
+        {'i', print_integer_with_flags},
+        {'l', print_long_integer},
+        {'h', print_short_integer},
+        {'b', print_binary},
+        {'u', print_unsigned},
+        {'o', print_octal},
+        {'x', print_hex},
+        {'X', print_upper_hex},
+        {'p', print_pointer},
+        {'r', print_reversed_string},
+        {'R', print_rot13_string},
+        {'N', print_string_non_printable},
+        {0, NULL}
+    };
 
     va_start(args, format);
 
-    while (format[len])
+    for (i = 0; format && format[i]; i++)
     {
-        if (format[len] == '%')
+        if (format[i] == '%')
         {
-            len++;
-
-            /* Handle format specifiers */
-            if (format[len] == 'c')
-                total_printed += print_char(args, buffer, &printed_chars);
-            else if (format[len] == 's')
+            i++;
+            for (j = 0; specifiers[j].specifier; j++)
             {
-                char *str = va_arg(args, char *);
-                if (!str)
-                    str = "(null)";
-                total_printed += width ? print_padded_string(str, width, buffer, &printed_chars, padding_char) : print_string(args, buffer, &printed_chars);
+                if (format[i] == specifiers[j].specifier)
+                {
+                    printed_chars += specifiers[j].func(args, buffer, &printed_chars, flags);
+                    break;
+                }
             }
-            else if (format[len] == '%')
-                total_printed += print_percent(buffer, &printed_chars);
-            else if (strchr("diouxX", format[len]) != NULL)
-            {
-                if (length & LONG_FLAG)
-                    total_printed += print_long_integer(args, buffer, &printed_chars, format[len]);
-                else if (length & SHORT_FLAG)
-                    total_printed += print_short_integer(args, buffer, &printed_chars, format[len]);
-                else
-                    total_printed += print_integer_with_flags(args, buffer, &printed_chars, flags);
-            }
-            else if (format[len] == 'r' || format[len] == 'R')
-            {
-                char *str = va_arg(args, char *);
-                if (!str)
-                    str = "(null)";
-                total_printed += format[len] == 'r' ? print_reversed_string(str, buffer, &printed_chars) : print_rot13_string(str, buffer, &printed_chars);
-            }
-            // Handle other conversion specifiers and custom specifiers here
         }
         else
         {
-            /* Add the character to the buffer */
-            buffer[printed_chars++] = format[len];
-            total_printed++;
+            buffer[printed_chars++] = format[i];
         }
-
-        /* Flush buffer if it's full or at end of format */
-        if (printed_chars == 1024 || format[len + 1] == '\0')
-        {
-            write(1, buffer, printed_chars);
-            printed_chars = 0;
-        }
-
-        len++;
     }
 
     va_end(args);
-
-    return total_printed;
+    
+    // Print the remaining characters in the buffer
+    write(1, buffer, printed_chars);
+    
+    return printed_chars;
 }
-
