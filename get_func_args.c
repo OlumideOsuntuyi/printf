@@ -34,6 +34,8 @@ void select_print_function(const char *format, va_list args, int *printed_chars)
                     print_percent(printed_chars);
                     break;
                 case 'd':
+                     print_integer(args, printed_chars);
+                     break;
                 case 'i':
                     print_integer_with_flags(args, buffer, printed_chars, 0);
                     break;
@@ -61,7 +63,7 @@ void select_print_function(const char *format, va_list args, int *printed_chars)
                     print_octal(args, printed_chars);
                     break;
                 case 'x':
-                    print_hex(args, printed_chars, 0);
+                    print_hex(args, printed_chars);
                     break;
                 case 'X':
                     print_upper_hex(args, printed_chars);
@@ -69,13 +71,13 @@ void select_print_function(const char *format, va_list args, int *printed_chars)
                 case 'p':
                     print_pointer(args, buffer, printed_chars);
                     break;
-                case 'R':
+                case 'r':
                     print_reversed_string(va_arg(args, const char *), buffer, printed_chars);
                     break;
-                case 'T':
+                case 'R':
                     print_rot13_string(va_arg(args, const char *), buffer, printed_chars);
                     break;
-                case 'N':
+                case '0':
                     print_string_non_printable(args, buffer, printed_chars);
                     break;
                 default:

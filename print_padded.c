@@ -16,11 +16,11 @@ int print_padded_string(const char *str, int width, char *buffer, int *printed_c
 
     /* Calculate the number of padding characters needed */
     int padding = width - (int)strlen(str);
-
+    int i;
     if (padding > 0)
     {
         /* Print the padding characters */
-        for (int i = 0; i < padding; i++)
+        for (i = 0; i < padding; i++)
         {
             buffer[(*printed_chars)++] = padding_char;
             count++;
@@ -28,7 +28,7 @@ int print_padded_string(const char *str, int width, char *buffer, int *printed_c
     }
 
     /* Print the string */
-    for (int i = 0; str[i]; i++)
+    for (i = 0; str[i]; i++)
     {
         buffer[(*printed_chars)++] = str[i];
         count++;
@@ -36,3 +36,20 @@ int print_padded_string(const char *str, int width, char *buffer, int *printed_c
 
     return count;
 }
+/**
+ * _strlen - find the length of a string
+ * @s: pointer to the string to check
+ * Return: void
+*/
+
+
+int _strlen(char *s)
+{
+	int i = 0;
+
+	while (s[i])
+		i++;
+
+	return (i);
+}
+

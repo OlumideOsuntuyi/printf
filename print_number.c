@@ -44,7 +44,7 @@ int print_integer_rec(int num, int *printed_chars)
     int count = 0;
 
     if (num / 10 != 0)
-        count += print_integer_rec(num / 10, printed_chars);
+        count += print_integer(num / 10, printed_chars);
 
     _putchar(num % 10 + '0');
     (*printed_chars)++;
@@ -52,3 +52,4 @@ int print_integer_rec(int num, int *printed_chars)
 
     return count;
 }
+

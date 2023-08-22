@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include <stdio.h>
 /**
  * print_string_non_printable - Print a string with escaped non-printable characters
  * @args: Argument list
@@ -16,7 +16,8 @@ int print_string_non_printable(va_list args, char *buffer, int *printed_chars)
     if (!str)
         str = "(null)";
 
-    for (int i = 0; str[i]; i++)
+    int i = 0;
+    for (i = 0; str[i]; i++)
     {
         if ((str[i] > 0 && str[i] < 32) || str[i] >= 127)
         {
@@ -42,3 +43,4 @@ int print_string_non_printable(va_list args, char *buffer, int *printed_chars)
 
     return count;
 }
+

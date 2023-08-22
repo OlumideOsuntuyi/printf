@@ -24,7 +24,8 @@ int print_integer_with_flags(va_list args, char *buffer, int *printed_chars, cha
     else if (flags & SPACE_FLAG)
         buffer[(*printed_chars)++] = ' ';
 
-    count += print_number(num, buffer, printed_chars);
+    count += print_integer(num, printed_chars);
 
     return count;
 }
+

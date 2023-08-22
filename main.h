@@ -26,6 +26,7 @@ typedef struct format_specifier
 
 int _printf(const char *format, ...);
 int _putchar(char c);
+int _strlen(char *s);
 
 int print_char(va_list args, int *printed_chars);
 int print_string(va_list args, int *printed_chars);
@@ -37,7 +38,7 @@ int print_binary(va_list args, int *printed_chars);
 int print_integer(va_list args, int *printed_chars);
 int print_unsigned(va_list args, int *printed_chars);
 int print_octal(va_list args, int *printed_chars);
-int print_hex(va_list args, int *printed_chars, int uppercase);
+int print_hex(va_list args, int *printed_chars);
 int print_upper_hex(va_list args, int *printed_chars);
 int print_pointer(va_list args, char *buffer, int *printed_chars);
 int print_reversed_string(const char *str, char *buffer, int *printed_chars);

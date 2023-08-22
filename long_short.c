@@ -15,13 +15,21 @@ int print_long_integer(va_list args, char *buffer, int *printed_chars, char spec
     int count = 0;
 
     if (specifier == 'd' || specifier == 'i')
-        count += print_number(num, buffer, printed_chars);
+        count += print_integer(num, printed_chars);
     else if (specifier == 'u')
-        count += print_unsigned_number((unsigned long int)num, buffer, printed_chars);
+        count += print_unsigned((unsigned long int)num, printed_chars);
     else if (specifier == 'o')
-        count += print_octal_number((unsigned long int)num, buffer, printed_chars);
+        count += print_octal((unsigned long int)num, printed_chars);
     else if (specifier == 'x' || specifier == 'X')
-        count += print_hex_number((unsigned long int)num, buffer, printed_chars, specifier);
+    {
+         if(specifier == 'X')
+         {
+             count += print_hex((unsigned long int)num, printed_chars);           
+         }else
+         {
+              count += print_hex_upper((unsigned long int)num, printed_chars);
+         }
+    }
 
     return count;
 }
@@ -41,13 +49,22 @@ int print_short_integer(va_list args, char *buffer, int *printed_chars, char spe
     int count = 0;
 
     if (specifier == 'd' || specifier == 'i')
-        count += print_number(num, buffer, printed_chars);
+        count += print_integer(num, printed_chars);
     else if (specifier == 'u')
-        count += print_unsigned_number((unsigned int)num, buffer, printed_chars);
+        count += print_unsigned((unsigned int)num, printed_chars);
     else if (specifier == 'o')
-        count += print_octal_number((unsigned int)num, buffer, printed_chars);
+        count += print_octal((unsigned int)num, printed_chars);
     else if (specifier == 'x' || specifier == 'X')
-        count += print_hex_number((unsigned int)num, buffer, printed_chars, specifier);
+    {
+         if(specifier == 'X')
+         {
+             count += print_hex((unsigned int)num, printed_chars);           
+         }else
+         {
+              count += print_hex_upper((unsigned int)num, printed_chars);
+         }
+    }
 
     return count;
 }
+
