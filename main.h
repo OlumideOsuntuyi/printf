@@ -44,7 +44,7 @@ int print_reversed_string(const char *str, char *buffer, int *printed_chars);
 int print_rot13_string(const char *str, char *buffer, int *printed_chars);
 int print_string_non_printable(va_list args, char *buffer, int *printed_chars);
 
-void select_print_function(const char *format, va_list args, int *printed_chars)
+void select_print_function(const char *format, va_list args, int *printed_chars);
 #endif /* MAIN_H */
 
 

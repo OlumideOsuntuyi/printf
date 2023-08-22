@@ -9,13 +9,16 @@
  * @param args The variadic arguments passed to _printf.
  * @param printed_chars A pointer to the total count of printed characters.
  */
- 
-void select_print_function(const char *format, va_list args, int *printed_chars) {
+
+void select_print_function(const char *format, va_list args, int *printed_chars) 
+{
     char specifier;
     char buffer[BUFSIZE];
 
-    while (*format) {
-        if (*format == '%') {
+    while (*format) 
+    {
+        if (*format == '%') 
+        {
             format++;
             specifier = *format;
             format++;
@@ -79,7 +82,8 @@ void select_print_function(const char *format, va_list args, int *printed_chars)
                     
                     break;
             }
-        } else {
+        } else 
+        {
             _putchar(*format);
             (*printed_chars)++;
             format++;
