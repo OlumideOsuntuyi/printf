@@ -1,44 +1,24 @@
-#include <limits.h>
-#include <stdio.h>
 #include "main.h"
 
-/**
- * main - Entry point
- *
- * Return: Always 0
- */
 int main(void)
 {
-    int len;
-    int len2;
-    unsigned int ui;
-    void *addr;
+    int printed_chars = 0;
 
-    len = _printf("Let's try to printf a simple sentence.\n");
-    len2 = printf("Let's try to printf a simple sentence.\n");
-    ui = (unsigned int)INT_MAX + 1024;
-    addr = (void *)0x7ffe637541f0;
-    _printf("Length:[%d, %i]\n", len, len);
-    printf("Length:[%d, %i]\n", len2, len2);
-    _printf("Negative:[%d]\n", -762534);
-    printf("Negative:[%d]\n", -762534);
-    _printf("Unsigned:[%u]\n", ui);
-    printf("Unsigned:[%u]\n", ui);
-    _printf("Unsigned octal:[%o]\n", ui);
-    printf("Unsigned octal:[%o]\n", ui);
-    _printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-    printf("Unsigned hexadecimal:[%x, %X]\n", ui, ui);
-    _printf("Character:[%c]\n", 'H');
-    printf("Character:[%c]\n", 'H');
-    _printf("String:[%s]\n", "I am a string !");
-    printf("String:[%s]\n", "I am a string !");
-    _printf("Address:[%p]\n", addr);
-    printf("Address:[%p]\n", addr);
-    len = _printf("Percent:[%%]\n");
-    len2 = printf("Percent:[%%]\n");
-    _printf("Len:[%d]\n", len);
-    printf("Len:[%d]\n", len2);
-    _printf("Unknown:[%r]\n");
-    printf("Unknown:[%r]\n");
+    _printf("Hello, world!\n");
+    _printf("Integer: %d\n", 12345);
+    _printf("String: %s\n", "Custom printf implementation");
+    _printf("Character: %c\n", 'A');
+    _printf("Percentage: %%\n");
+    _printf("Binary: %b\n", 42);
+    _printf("Hexadecimal (lowercase): %x\n", 255);
+    _printf("Hexadecimal (uppercase): %X\n", 255);
+    _printf("Unsigned Integer: %u\n", 98765);
+    _printf("Octal: %o\n", 63);
+    _printf("Pointer: %p\n", (void *)0x12345678);
+    _printf("Reversed String: %r\n", "Hello, world!");
+    _printf("ROT13: %R\n", "Hello, world!");
+    _printf("Non-Printable String: %S\n", "Hello\n\x7F\x80\xFF");
+    
     return (0);
 }
+
