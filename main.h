@@ -1,51 +1,91 @@
 #ifndef MAIN_H
 #define MAIN_H
 
+#include <stdlib.h>
 #include <stdarg.h>
 
-#define PLUS_FLAG   (1 << 0)
-#define SPACE_FLAG  (1 << 1)
-
-
-/* SIZES */
-#define BUFSIZE 1024
+/**
+ * struct printHandler - Struct to map format specifiers to functions
+ * @c: Format specifier character
+ * @f: Pointer to the corresponding printing function
+ */
+typedef struct printHandler
+{
+    char c;
+    int (*f)(va_list ap, flags_t *f);
+} ph;
 
 /**
- * struct format_specifier - Struct for format specifiers and corresponding functions
- * @specifier: The format specifier
- * @func: The corresponding function to handle the specifier
+ * struct flags - Struct to hold formatting flags for _printf
+ * @plus: Flag for the '+' character
+ * @space: Flag for the ' ' character
+ * @hash: Flag for the '#' character
  */
- 
-typedef struct format_specifier
+typedef struct flags
 {
-    char specifier;
-    int (*func)(va_list args, char *buffer, int *printed_chars, char flags);
-} format_specifier_t;
+    int plus;
+    int space;
+    int hash;
+} flags_t;
 
+/* print_nums */
+int print_int(va_list l, flags_t *f);
+void print_number(int n);
+int print_unsigned(va_list l, flags_t *f);
+int count_digit(int i);
 
+/* print_bases */
+int print_hex(va_list l, flags_t *f);
+int print_hex_big(va_list l, flags_t *f);
+int print_binary(va_list l, flags_t *f);
+int print_octal(va_list l, flags_t *f);
 
+/* converter */
+/**
+ * convert - Converts a number to a string representation in a given base
+ * @num: The input number
+ * @base: The base for conversion
+ * @lowercase: Flag indicating if hexa values should be lowercase
+ *
+ * Return: The result string
+ */
+char *convert(unsigned long int num, int base, int lowercase);
+
+/* _printf */
+/**
+ * _printf - Produces output according to a format
+ * @format: Format string containing the characters and the specifiers
+ *
+ * Description: This function formats and prints the output according to the
+ * format string. It handles various conversion specifiers.
+ * Return: Length of the formatted output string
+ */
 int _printf(const char *format, ...);
+
+/* get_print */
+int (*get_print(char s))(va_list, flags_t *);
+
+/* get_flag */
+int get_flag(char s, flags_t *f);
+
+/* print_alpha */
+int print_string(va_list l, flags_t *f);
+int print_char(va_list l, flags_t *f);
+
+/* write_funcs */
 int _putchar(char c);
-int _strlen(char *s);
+int _puts(char *str);
 
-int print_char(va_list args, int *printed_chars);
-int print_string(va_list args, int *printed_chars);
-int print_percent(int *printed_chars);
-int print_integer_with_flags(va_list args, char *buffer, int *printed_chars, char flags);
-int print_long_integer(va_list args, char *buffer, int *printed_chars, char specifier);
-int print_short_integer(va_list args, char *buffer, int *printed_chars, char specifier);
-int print_binary(va_list args, int *printed_chars);
-int print_integer(va_list args, int *printed_chars);
-int print_unsigned(va_list args, int *printed_chars);
-int print_octal(va_list args, int *printed_chars);
-int print_hex(va_list args, int *printed_chars);
-int print_upper_hex(va_list args, int *printed_chars);
-int print_pointer(va_list args, char *buffer, int *printed_chars);
-int print_reversed_string(const char *str, char *buffer, int *printed_chars);
-int print_rot13_string(const char *str, char *buffer, int *printed_chars);
-int print_string_non_printable(va_list args, char *buffer, int *printed_chars);
+/* print_custom */
+int print_rot13(va_list l, flags_t *f);
+int print_rev(va_list l, flags_t *f);
+int print_bigS(va_list l, flags_t *f);
 
-void select_print_function(const char *format, va_list args, int *printed_chars);
+/* print_address */
+int print_address(va_list l, flags_t *f);
+
+/* print_percent */
+int print_percent(va_list l, flags_t *f);
+
 #endif /* MAIN_H */
-
 
