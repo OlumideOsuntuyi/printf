@@ -84,4 +84,3 @@ int print_hex_big(va_list l, flags_t *f)
 	return (count);
 }
 
-

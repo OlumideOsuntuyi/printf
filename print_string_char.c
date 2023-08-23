@@ -36,4 +36,3 @@ int print_char(va_list l, flags_t *f)
 	return (1);  /* Return 1 as only one character is printed */
 }
 
-

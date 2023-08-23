@@ -27,4 +27,3 @@ int print_address(va_list l, flags_t *f)
 	return (count);
 }
 
-
