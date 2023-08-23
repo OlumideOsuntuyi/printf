@@ -72,7 +72,7 @@ int print_octal(va_list l, flags_t *f)
  * hash flag is set, it adds "0X" before the string.
  * Return: Number of characters printed
  */
-int print_hex_upper(va_list l, flags_t *f)
+int print_hex_big(va_list l, flags_t *f)
 {
 	unsigned int num = va_arg(l, unsigned int);
 	char *str = convert(num, 16, 0);
@@ -83,5 +83,6 @@ int print_hex_upper(va_list l, flags_t *f)
 	count += _puts(str);  /* Print the hexadecimal string */
 	return (count);
 }
+
 
 

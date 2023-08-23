@@ -1,7 +1,7 @@
 #include "main.h"
 
 /**
- * print_reverse - Prints a string in reverse
+ * print_rev - Prints a string in reverse
  * @l: Argument from _printf
  * @f: Pointer to the struct flags that determines if a flag is passed to _printf
  *
@@ -9,7 +9,7 @@
  * prints the string in reverse order.
  * Return: Length of the printed string
  */
-int print_reverse(va_list l, flags_t *f)
+int print_rev(va_list l, flags_t *f)
 {
 	int i = 0, j;
 	char *s = va_arg(l, char *);
@@ -64,7 +64,7 @@ int print_rot13(va_list l, flags_t *f)
 }
 
 /**
- * print_upperS - Prints non-printable characters as hex values
+ * print_bigS - Prints non-printable characters as hex values
  * @l: va_list arguments from _printf
  * @f: Pointer to the struct flags that determines if a flag is passed to _printf
  *
@@ -73,7 +73,7 @@ int print_rot13(va_list l, flags_t *f)
  * in hexadecimal (always 2 characters).
  * Return: Number of characters printed
  */
-int print_upperS(va_list l, flags_t *f)
+int print_bigS(va_list l, flags_t *f)
 {
 	int i, count = 0;
 	char *res;
