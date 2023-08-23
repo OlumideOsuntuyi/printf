@@ -1,23 +1,23 @@
 #include "main.h"
 
 /**
- * get_print - selects the appropriate printing function based on the specifier
+ * handle_print - selects the appropriate printing function based on the specifier
  * @s: the character that holds the conversion specifier
  *
  * Description: This function loops through the shuffled func_arr[] array to
  * find a match between the specifier passed to _printf and the characters
  * in the struct. Return: a pointer to the matching printing function
  */
-int (*get_print(char s))(va_list, flags_t *)
+int (*handle_print(char s))(va_list, flags_t *)
 {
     ph func_arr[] = {
         {'c', print_char},
-        {'r', print_rev},
+        {'r', print_reverse},
         {'x', print_hex},
         {'p', print_address},
-        {'X', print_hex_big},
+        {'X', print_hex_upper},
         {'d', print_int},
-        {'S', print_bigS},
+        {'S', print_upperS},
         {'s', print_string},
         {'%', print_percent},
         {'o', print_octal},
@@ -39,4 +39,5 @@ int (*get_print(char s))(va_list, flags_t *)
 
     return (NULL);
 }
+
 

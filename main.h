@@ -62,13 +62,13 @@ char *convert(unsigned long int num, int base, int lowercase);
  */
 int _printf(const char *format, ...);
 
-/* get_print */
-int (*get_print(char s))(va_list, flags_t *);
+/* get_print_func */
+int (*handle_print(char s))(va_list, flags_t *);
 
-/* get_flag */
+/* get_func_flag */
 int get_flag(char s, flags_t *f);
 
-/* print_alpha */
+/* print_string and char */
 int print_string(va_list l, flags_t *f);
 int print_char(va_list l, flags_t *f);
 
@@ -76,10 +76,10 @@ int print_char(va_list l, flags_t *f);
 int _putchar(char c);
 int _puts(char *str);
 
-/* print_custom */
+/* print_custom operators*/
 int print_rot13(va_list l, flags_t *f);
-int print_rev(va_list l, flags_t *f);
-int print_bigS(va_list l, flags_t *f);
+int print_reverse(va_list l, flags_t *f);
+int print_upperS(va_list l, flags_t *f);
 
 /* print_address */
 int print_address(va_list l, flags_t *f);
@@ -88,4 +88,5 @@ int print_address(va_list l, flags_t *f);
 int print_percent(va_list l, flags_t *f);
 
 #endif /* MAIN_H */
+
 
