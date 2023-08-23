@@ -1,2 +1,2 @@
-This printf team  project was carried out by Osuntuyi Olumide Alone.
-Description: This project tests knowledge of functions, strings in C programming
+0X11 C-printf 
+This is a C project that requires us to create a custom printf function
