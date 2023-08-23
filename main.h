@@ -4,23 +4,14 @@
 #include <stdlib.h>
 #include <stdarg.h>
 
-/**
- * struct printHandler - Struct to map format specifiers to functions
- * @c: Format specifier character
- * @f: Pointer to the corresponding printing function
- */
+/* Struct to map format specifiers to functions */
 typedef struct printHandler
 {
     char c;
     int (*f)(va_list ap, flags_t *f);
 } ph;
 
-/**
- * struct flags - Struct to hold formatting flags for _printf
- * @plus: Flag for the '+' character
- * @space: Flag for the ' ' character
- * @hash: Flag for the '#' character
- */
+/* Struct to hold formatting flags for _printf */
 typedef struct flags
 {
     int plus;
@@ -41,25 +32,9 @@ int print_binary(va_list l, flags_t *f);
 int print_octal(va_list l, flags_t *f);
 
 /* converter */
-/**
- * convert - Converts a number to a string representation in a given base
- * @num: The input number
- * @base: The base for conversion
- * @lowercase: Flag indicating if hexa values should be lowercase
- *
- * Return: The result string
- */
 char *convert(unsigned long int num, int base, int lowercase);
 
 /* _printf */
-/**
- * _printf - Produces output according to a format
- * @format: Format string containing the characters and the specifiers
- *
- * Description: This function formats and prints the output according to the
- * format string. It handles various conversion specifiers.
- * Return: Length of the formatted output string
- */
 int _printf(const char *format, ...);
 
 /* get_print */
@@ -88,5 +63,4 @@ int print_address(va_list l, flags_t *f);
 int print_percent(va_list l, flags_t *f);
 
 #endif /* MAIN_H */
-
 
